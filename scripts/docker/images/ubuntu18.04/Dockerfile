@@ -25,10 +25,12 @@ RUN apt-get update -y &&\
                     openmpi-bin libopenmpi-dev libzmq3-dev \
                     python3-dev python3-mpi4py python3-numpy python3-pip \
                     libblosc-dev libbz2-dev libpng-dev \
-                    libhdf5-openmpi-dev \
-                    cmake \
+                    libhdf5-dev \
+                    wget \ 
                     git vim \
                     -y
+
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.12.4/cmake-3.12.4-Linux-x86_64.sh && chmod u+x cmake-3.12.4-Linux-x86_64.sh && ./cmake-3.12.4-Linux-x86_64.sh --skip-license
 
 RUN cd /tmp &&\
     mkdir -p Software
@@ -64,9 +66,9 @@ RUN cd /tmp/Software &&\
 RUN cd /tmp &&\
     rm -fr Software
 
-ENV PYTHONPATH=/usr/local/lib/python3.6/site-packages/:/opt/adios2/lib/python3.6/site-packages
-ENV PATH=/opt/adios2/bin
-ENV LD_LIBRARY_PATH=/usr/local/lib:/opt/zfp/lib:/opt/sz/lib:/opt/adios2/lib
+ENV PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.6/site-packages/:/opt/adios2/lib/python3.6/site-packages
+ENV PATH=$PATH:/opt/adios2/bin
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/opt/zfp/lib:/opt/sz/lib:/opt/adios2/lib
 
 # optionally add a new user and start using adios2 with an example
 # RUN useradd -m wfg && echo "wfg:wfg" | chpasswd && adduser wfg sudo
