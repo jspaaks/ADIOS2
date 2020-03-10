@@ -58,7 +58,9 @@ RUN cd /tmp/Software &&\
           -DZFP_ROOT=/opt/zfp \
           -DSZ_ROOT=/opt/sz \
           -DADIOS2_BUILD_TESTING=OFF \
-          -DADIOS2_BUILD_EXAMPLES=OFF \
+          -DADIOS2_BUILD_EXAMPLES=ON \
+          -DADIOS2_USE_MPI=OFF \
+          -DADIOS2_USE_HDF5=ON \
           ../ADIOS2 &&\
     make -j &&\
     make install
