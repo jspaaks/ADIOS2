@@ -66,9 +66,9 @@ RUN cd /tmp/Software &&\
 RUN cd /tmp &&\
     rm -fr Software
 
-ENV PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.6/site-packages/:/opt/adios2/lib/python3.6/site-packages
-ENV PATH=$PATH:/opt/adios2/bin
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/opt/zfp/lib:/opt/sz/lib:/opt/adios2/lib
+ENV PYTHONPATH="/usr/local/lib/python3.6/site-packages/:/opt/adios2/lib/python3.6/site-packages:${PYTHONPATH}"
+ENV PATH="/opt/adios2/bin:${PATH}"
+ENV LD_LIBRARY_PATH="/usr/local/lib:/opt/zfp/lib:/opt/sz/lib:/opt/adios2/lib:${LD_LIBRARY_PATH}"
 
 # optionally add a new user and start using adios2 with an example
 # RUN useradd -m wfg && echo "wfg:wfg" | chpasswd && adduser wfg sudo
